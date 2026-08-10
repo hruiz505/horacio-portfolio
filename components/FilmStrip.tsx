@@ -14,7 +14,7 @@ export default function FilmStrip({ tiers }: FilmStripProps) {
     target: containerRef,
     offset: ["start start", "end end"],
   });
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-50%"]);
+  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-66.6667%"]);
 
   return (
     <section
@@ -29,7 +29,7 @@ export default function FilmStrip({ tiers }: FilmStripProps) {
           {tiers.map((tier) => (
             <div
               key={tier.name}
-              className="w-screen h-screen flex-shrink-0 flex flex-col justify-center items-center p-10"
+              className="w-screen h-screen flex-shrink-0 flex flex-col justify-center items-center gap-6 p-10"
             >
               <span
                 className="text-xs uppercase tracking-[0.4em]"

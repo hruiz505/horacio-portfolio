@@ -32,7 +32,6 @@ body {
 
 body {
   font-family: var(--font-sans), system-ui, sans-serif;
-  cursor: none;
 }
 
 ::selection {
