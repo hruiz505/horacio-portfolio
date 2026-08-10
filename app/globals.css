@@ -16,20 +16,35 @@ html {
   scroll-behavior: smooth;
 }
 
+html {
+  overflow-x: hidden;
+}
+
+body {
+  overflow-x: hidden;
+}
+
 html,
 body {
   background: var(--background);
   color: var(--foreground);
-  overflow-x: hidden;
 }
 
 body {
   font-family: var(--font-sans), system-ui, sans-serif;
 }
 
+.cursor-layer {
+  display: none;
+}
+
 @media (hover: hover) and (pointer: fine) {
   body {
     cursor: none;
+  }
+
+  .cursor-layer {
+    display: block;
   }
 }
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, useSyncExternalStore } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 
 interface TrailDot {
@@ -11,28 +11,8 @@ interface TrailDot {
 
 const TRAIL_LIFETIME_MS = 1500;
 const TRAIL_INTERVAL_MS = 45;
-const FINE_POINTER_QUERY = "(hover: hover) and (pointer: fine)";
-
-function subscribeToPointerCapability(callback: () => void) {
-  const mediaQueryList = window.matchMedia(FINE_POINTER_QUERY);
-  mediaQueryList.addEventListener("change", callback);
-  return () => mediaQueryList.removeEventListener("change", callback);
-}
-
-function getPointerCapability() {
-  return window.matchMedia(FINE_POINTER_QUERY).matches;
-}
-
-function getServerPointerCapability() {
-  return false;
-}
 
 export default function CustomCursor() {
-  const enabled = useSyncExternalStore(
-    subscribeToPointerCapability,
-    getPointerCapability,
-    getServerPointerCapability
-  );
   const [trail, setTrail] = useState<TrailDot[]>([]);
   const nextTrailId = useRef(0);
   const lastTrailAt = useRef(0);
@@ -43,8 +23,6 @@ export default function CustomCursor() {
   const springY = useSpring(cursorY, { stiffness: 500, damping: 40 });
 
   useEffect(() => {
-    if (!enabled) return;
-
     const handleMove = (event: MouseEvent) => {
       cursorX.set(event.clientX);
       cursorY.set(event.clientY);
@@ -65,12 +43,13 @@ export default function CustomCursor() {
 
     window.addEventListener("mousemove", handleMove);
     return () => window.removeEventListener("mousemove", handleMove);
-  }, [enabled, cursorX, cursorY]);
-
-  if (!enabled) return null;
+  }, [cursorX, cursorY]);
 
   return (
-    <div className="pointer-events-none fixed inset-0 z-[9999]">
+    <div
+      className="cursor-layer pointer-events-none fixed top-0 left-0 z-[9999]"
+      style={{ width: "100vw", height: "100vh" }}
+    >
       {trail.map((dot) => (
         <motion.div
           key={dot.id}
