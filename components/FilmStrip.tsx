@@ -14,28 +14,22 @@ export default function FilmStrip({ tiers }: FilmStripProps) {
     target: containerRef,
     offset: ["start start", "end end"],
   });
-  const trackWidthVw = tiers.length * 100;
-  const maxShiftPercent = ((tiers.length - 1) / tiers.length) * 100;
-  const x = useTransform(
-    scrollYProgress,
-    [0, 1],
-    ["0%", `-${maxShiftPercent}%`]
-  );
+  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-50%"]);
 
   return (
     <section
       ref={containerRef}
-      className="relative h-[300vh] overflow-hidden border-t border-white"
+      className="relative h-[300vh] w-screen overflow-hidden"
     >
-      <div className="sticky top-0 flex h-screen items-center overflow-hidden">
+      <div className="sticky top-0 h-screen w-screen overflow-hidden flex items-center">
         <motion.div
-          style={{ x, width: `${trackWidthVw}vw`, willChange: "transform" }}
-          className="flex"
+          style={{ x, width: "300vw" }}
+          className="flex h-screen will-change-transform"
         >
           {tiers.map((tier) => (
             <div
               key={tier.name}
-              className="flex h-screen w-screen shrink-0 flex-col items-start justify-center gap-6 border-r border-white px-6 sm:px-16"
+              className="w-screen h-screen flex-shrink-0 flex flex-col justify-center items-center p-10"
             >
               <span
                 className="text-xs uppercase tracking-[0.4em]"

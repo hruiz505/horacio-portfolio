@@ -32,20 +32,7 @@ body {
 
 body {
   font-family: var(--font-sans), system-ui, sans-serif;
-}
-
-.cursor-layer {
-  display: none;
-}
-
-@media (hover: hover) and (pointer: fine) {
-  body {
-    cursor: none;
-  }
-
-  .cursor-layer {
-    display: block;
-  }
+  cursor: none;
 }
 
 ::selection {
