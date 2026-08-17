@@ -22,11 +22,11 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
-      <body className="text-white antialiased">
+      <body className="relative text-white antialiased">
         <div
           aria-hidden="true"
           style={{
-            position: "fixed",
+            position: "absolute",
             top: 0,
             left: 0,
             right: 0,
@@ -37,6 +37,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             backgroundSize: "cover",
             backgroundPosition: "center center",
             backgroundRepeat: "no-repeat",
+            backgroundAttachment: "scroll",
             filter: "grayscale(100%) contrast(110%) brightness(60%)",
             pointerEvents: "none",
           }}
@@ -44,7 +45,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <div
           aria-hidden="true"
           style={{
-            position: "fixed",
+            position: "absolute",
             top: 0,
             left: 0,
             right: 0,
