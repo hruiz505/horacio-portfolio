@@ -398,3 +398,6 @@ const es: ContentBundle = {
 export const content: Record<Language, ContentBundle> = { en, es };
 
 export const resumeDownloadUrl = "/horacio-ruiz-resume.pdf";
+
+export const ambientAudioUrl = "/audio/ambient.mp3";
+export const ambientAudioCredit = '"The Long Dark" by Scott Buckley (CC BY 3.0)';

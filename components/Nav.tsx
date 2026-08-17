@@ -1,8 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu } from "lucide-react";
+import AudioToggle from "@/components/AudioToggle";
+import { ambientAudioCredit, ambientAudioUrl } from "@/data/content";
 import type { Language, NavLink } from "@/data/content";
 
 interface NavProps {
@@ -13,9 +15,39 @@ interface NavProps {
 
 export default function Nav({ navLinks, language, onToggleLanguage }: NavProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [isAudioPlaying, setIsAudioPlaying] = useState(false);
+  const audioRef = useRef<HTMLAudioElement>(null);
+
+  const toggleAudio = () => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    if (isAudioPlaying) {
+      audio.pause();
+      setIsAudioPlaying(false);
+      return;
+    }
+
+    audio.muted = false;
+    audio
+      .play()
+      .then(() => setIsAudioPlaying(true))
+      .catch(() => {
+        audio.muted = true;
+      });
+  };
 
   return (
     <header className="fixed inset-x-0 top-0 z-40 border-b border-white bg-black/50 backdrop-blur-md">
+      <audio
+        ref={audioRef}
+        src={ambientAudioUrl}
+        loop
+        muted
+        className="hidden"
+        title={ambientAudioCredit}
+      />
+
       <div className="flex items-center justify-between px-6 py-5 sm:px-10">
         <motion.a
           href="#top"
@@ -48,6 +80,11 @@ export default function Nav({ navLinks, language, onToggleLanguage }: NavProps) 
           >
             {language === "en" ? "ES" : "EN"}
           </button>
+          <AudioToggle
+            isPlaying={isAudioPlaying}
+            onToggle={toggleAudio}
+            className="px-3 py-1.5"
+          />
         </div>
 
         <button
@@ -81,14 +118,21 @@ export default function Nav({ navLinks, language, onToggleLanguage }: NavProps) 
                   {link.label}
                 </a>
               ))}
-              <button
-                type="button"
-                onClick={onToggleLanguage}
-                aria-label={language === "en" ? "Switch to Spanish" : "Cambiar a inglés"}
-                className="w-fit border border-white px-3 py-1.5 text-white transition-colors hover:bg-white hover:text-black"
-              >
-                {language === "en" ? "ES" : "EN"}
-              </button>
+              <div className="flex items-center gap-4">
+                <button
+                  type="button"
+                  onClick={onToggleLanguage}
+                  aria-label={language === "en" ? "Switch to Spanish" : "Cambiar a inglés"}
+                  className="w-fit border border-white px-3 py-1.5 text-white transition-colors hover:bg-white hover:text-black"
+                >
+                  {language === "en" ? "ES" : "EN"}
+                </button>
+                <AudioToggle
+                  isPlaying={isAudioPlaying}
+                  onToggle={toggleAudio}
+                  className="px-3 py-1.5"
+                />
+              </div>
             </nav>
           </motion.div>
         )}
