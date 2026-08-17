@@ -1,6 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { Menu } from "lucide-react";
 import type { Language, NavLink } from "@/data/content";
 
 interface NavProps {
@@ -10,39 +12,87 @@ interface NavProps {
 }
 
 export default function Nav({ navLinks, language, onToggleLanguage }: NavProps) {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <header className="fixed inset-x-0 top-0 z-40 flex items-center justify-between border-b border-white bg-black/50 px-6 py-5 backdrop-blur-md sm:px-10">
-      <motion.a
-        href="#top"
-        initial={{ opacity: 0, rotate: -90, scale: 0.5 }}
-        whileInView={{ opacity: 1, rotate: 0, scale: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.7, ease: "easeOut" }}
-        className="text-xl font-black tracking-tight"
-      >
-        HR
-      </motion.a>
-      <div className="flex items-center gap-6 text-base uppercase tracking-[0.2em]">
-        <nav className="flex items-center gap-6">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="text-white/70 transition-colors hover:text-white"
-            >
-              {link.label}
-            </a>
-          ))}
-        </nav>
+    <header className="fixed inset-x-0 top-0 z-40 border-b border-white bg-black/50 backdrop-blur-md">
+      <div className="flex items-center justify-between px-6 py-5 sm:px-10">
+        <motion.a
+          href="#top"
+          initial={{ opacity: 0, rotate: -90, scale: 0.5 }}
+          whileInView={{ opacity: 1, rotate: 0, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          className="text-xl font-black tracking-tight"
+        >
+          HR
+        </motion.a>
+
+        <div className="hidden items-center gap-6 text-base uppercase tracking-[0.2em] md:flex">
+          <nav className="flex items-center gap-6">
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="text-white/70 transition-colors hover:text-white"
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
+          <button
+            type="button"
+            onClick={onToggleLanguage}
+            aria-label={language === "en" ? "Switch to Spanish" : "Cambiar a inglés"}
+            className="border border-white px-3 py-1.5 text-white transition-colors hover:bg-white hover:text-black"
+          >
+            {language === "en" ? "ES" : "EN"}
+          </button>
+        </div>
+
         <button
           type="button"
-          onClick={onToggleLanguage}
-          aria-label={language === "en" ? "Switch to Spanish" : "Cambiar a inglés"}
-          className="border border-white px-3 py-1.5 text-white transition-colors hover:bg-white hover:text-black"
+          onClick={() => setIsOpen((prev) => !prev)}
+          aria-label={isOpen ? "Close menu" : "Open menu"}
+          aria-expanded={isOpen}
+          className="flex md:hidden"
         >
-          {language === "en" ? "ES" : "EN"}
+          <Menu size={28} />
         </button>
       </div>
+
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className="w-full bg-black md:hidden"
+          >
+            <nav className="flex flex-col gap-6 px-6 py-8 text-base uppercase tracking-[0.2em]">
+              {navLinks.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setIsOpen(false)}
+                  className="text-white/70 transition-colors hover:text-white"
+                >
+                  {link.label}
+                </a>
+              ))}
+              <button
+                type="button"
+                onClick={onToggleLanguage}
+                aria-label={language === "en" ? "Switch to Spanish" : "Cambiar a inglés"}
+                className="w-fit border border-white px-3 py-1.5 text-white transition-colors hover:bg-white hover:text-black"
+              >
+                {language === "en" ? "ES" : "EN"}
+              </button>
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

@@ -26,7 +26,7 @@ export default function Hero({ profile, scrollLabel }: HeroProps) {
   return (
     <section
       id="top"
-      className="relative flex min-h-screen flex-col items-center justify-center px-6 pt-20 text-center"
+      className="relative flex min-h-screen flex-col items-center justify-center px-6 pt-24 text-center"
     >
       <h1
         className="flex flex-wrap justify-center font-black leading-none tracking-tight"
