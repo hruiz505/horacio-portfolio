@@ -1,18 +1,33 @@
-import type { Certification } from "@/data/content";
-import { methodology, sectionTitles } from "@/data/content";
+import type {
+  Certification,
+  Education,
+  Methodology as MethodologyContent,
+} from "@/data/content";
 
 interface MethodologyProps {
   certifications: Certification[];
+  education: Education;
+  methodology: MethodologyContent;
+  title: string;
+  educationLabel: string;
+  certificationsLabel: string;
 }
 
-export default function Methodology({ certifications }: MethodologyProps) {
+export default function Methodology({
+  certifications,
+  education,
+  methodology,
+  title,
+  educationLabel,
+  certificationsLabel,
+}: MethodologyProps) {
   return (
     <section id="methodology" className="border-t border-white px-6 py-24 sm:px-10">
       <h2
         className="mb-12 font-black leading-none tracking-tight"
         style={{ fontSize: "clamp(2.5rem, 8vw, 6rem)" }}
       >
-        {sectionTitles.methodology}
+        {title}
       </h2>
 
       <div className="grid gap-16 md:grid-cols-2">
@@ -31,17 +46,42 @@ export default function Methodology({ certifications }: MethodologyProps) {
         </div>
       </div>
 
-      <div className="mt-20 grid gap-x-10 gap-y-8 border-t border-white pt-10 sm:grid-cols-3">
-        {certifications.map((cert) => (
-          <div key={cert.name} className="flex flex-col gap-2">
-            <span className="font-bold uppercase tracking-tight">
-              {cert.name}
+      <div className="mt-20 border-t border-white pt-10">
+        <span className="text-base uppercase tracking-[0.3em] text-white/40">
+          {educationLabel}
+        </span>
+        <div className="mt-6 flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between">
+          <span className="text-xl font-bold">
+            {education.school}
+            <span className="ml-2 font-serif text-lg font-normal text-white/60">
+              — {education.location}
             </span>
-            <span className="font-serif text-sm italic text-white/60">
-              {cert.date}
-            </span>
-          </div>
-        ))}
+          </span>
+          <span className="font-serif text-lg italic text-white/60">
+            {education.degree} · {education.date}
+          </span>
+        </div>
+        <p className="mt-4 font-serif text-lg text-white/60">
+          {education.coursework.join(" · ")}
+        </p>
+      </div>
+
+      <div className="mt-16 border-t border-white pt-10">
+        <span className="text-base uppercase tracking-[0.3em] text-white/40">
+          {certificationsLabel}
+        </span>
+        <div className="mt-6 grid gap-x-10 gap-y-8 sm:grid-cols-3">
+          {certifications.map((cert) => (
+            <div key={cert.name} className="flex flex-col gap-2">
+              <span className="text-lg font-bold uppercase tracking-tight">
+                {cert.name}
+              </span>
+              <span className="font-serif text-lg italic text-white/60">
+                {cert.date}
+              </span>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

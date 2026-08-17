@@ -6,6 +6,7 @@ import type { Profile } from "@/data/content";
 
 interface HeroProps {
   profile: Profile;
+  scrollLabel: string;
 }
 
 const letterVariants: Variants = {
@@ -18,7 +19,7 @@ const letterVariants: Variants = {
   }),
 };
 
-export default function Hero({ profile }: HeroProps) {
+export default function Hero({ profile, scrollLabel }: HeroProps) {
   const letters = profile.name.split("");
   const settleDelay = letters.length * 0.05;
 
@@ -40,7 +41,7 @@ export default function Hero({ profile }: HeroProps) {
             variants={letterVariants}
             className="inline-block whitespace-pre"
           >
-            {letter === " " ? " " : letter}
+            {letter === " " ? " " : letter}
           </motion.span>
         ))}
       </h1>
@@ -54,13 +55,22 @@ export default function Hero({ profile }: HeroProps) {
         {profile.title}
       </motion.p>
 
+      <motion.p
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: settleDelay + 0.4, duration: 0.6, ease: "easeOut" }}
+        className="mt-6 max-w-[60ch] font-serif text-lg leading-relaxed text-white/70 sm:text-xl"
+      >
+        {profile.summary}
+      </motion.p>
+
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: settleDelay + 0.6, duration: 0.6 }}
-        className="absolute bottom-10 flex flex-col items-center gap-2 text-xs uppercase tracking-[0.3em] text-white/60"
+        className="absolute bottom-10 flex flex-col items-center gap-2 text-base uppercase tracking-[0.3em] text-white/60"
       >
-        <span>Scroll</span>
+        <span>{scrollLabel}</span>
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}

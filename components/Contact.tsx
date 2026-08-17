@@ -3,10 +3,10 @@
 import type { ReactNode } from "react";
 import { motion } from "framer-motion";
 import type { Profile } from "@/data/content";
-import { sectionTitles } from "@/data/content";
 
 interface ContactProps {
   profile: Profile;
+  title: string;
 }
 
 function UnderlineLink({ href, children }: { href: string; children: ReactNode }) {
@@ -29,7 +29,7 @@ function UnderlineLink({ href, children }: { href: string; children: ReactNode }
   );
 }
 
-export default function Contact({ profile }: ContactProps) {
+export default function Contact({ profile, title }: ContactProps) {
   return (
     <section
       id="contact"
@@ -39,7 +39,7 @@ export default function Contact({ profile }: ContactProps) {
         className="font-black leading-none tracking-tight"
         style={{ fontSize: "clamp(2.5rem, 10vw, 8rem)" }}
       >
-        {sectionTitles.contact}
+        {title}
       </h2>
       <div className="flex flex-col items-center gap-4 text-white/80">
         <UnderlineLink href={`mailto:${profile.email}`}>

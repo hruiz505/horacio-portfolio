@@ -2,13 +2,21 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import type { Tier } from "@/data/content";
+import { ShieldCheck, Network, Fingerprint, type LucideIcon } from "lucide-react";
+import type { Framework } from "@/data/content";
+
+const iconMap: Record<string, LucideIcon> = {
+  ShieldCheck,
+  Network,
+  Fingerprint,
+};
 
 interface FilmStripProps {
-  tiers: Tier[];
+  frameworks: Framework[];
+  focusLabel: string;
 }
 
-export default function FilmStrip({ tiers }: FilmStripProps) {
+export default function FilmStrip({ frameworks, focusLabel }: FilmStripProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -19,35 +27,35 @@ export default function FilmStrip({ tiers }: FilmStripProps) {
   return (
     <section
       ref={containerRef}
-      className="relative h-[300vh] w-screen overflow-hidden"
+      className="relative h-[300vh] w-screen"
     >
       <div className="sticky top-0 h-screen w-screen overflow-hidden flex items-center">
         <motion.div
           style={{ x, width: "300vw" }}
           className="flex h-screen will-change-transform"
         >
-          {tiers.map((tier) => (
-            <div
-              key={tier.name}
-              className="w-screen h-screen flex-shrink-0 flex flex-col justify-center items-center gap-6 p-10"
-            >
-              <span
-                className="text-xs uppercase tracking-[0.4em]"
-                style={{ color: tier.color }}
+          {frameworks.map((framework) => {
+            const Icon = iconMap[framework.icon];
+            return (
+              <div
+                key={framework.name}
+                className="w-screen h-screen flex-shrink-0 flex flex-col justify-center items-center gap-6 p-10"
               >
-                {tier.name}
-              </span>
-              <span
-                className="font-black leading-none"
-                style={{ fontSize: "clamp(2.5rem, 9vw, 7rem)", color: tier.color }}
-              >
-                {tier.metric}
-              </span>
-              <p className="max-w-[55ch] font-serif text-base leading-relaxed text-white/80 sm:text-lg">
-                {tier.description}
-              </p>
-            </div>
-          ))}
+                {Icon && (
+                  <Icon size={96} strokeWidth={1} className="mb-8 text-white/20" />
+                )}
+                <h3
+                  className="font-black leading-none text-center text-white"
+                  style={{ fontSize: "clamp(2.5rem, 9vw, 7rem)" }}
+                >
+                  {framework.name}
+                </h3>
+                <p className="max-w-[55ch] text-center font-serif text-base italic leading-relaxed text-white/80 sm:text-lg">
+                  {focusLabel}: {framework.focus}
+                </p>
+              </div>
+            );
+          })}
         </motion.div>
       </div>
     </section>

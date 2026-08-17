@@ -6,9 +6,14 @@ import type { Project } from "@/data/content";
 interface ProjectSpreadProps {
   project: Project;
   index: number;
+  toolsLabel: string;
 }
 
-export default function ProjectSpread({ project, index }: ProjectSpreadProps) {
+export default function ProjectSpread({
+  project,
+  index,
+  toolsLabel,
+}: ProjectSpreadProps) {
   const reversed = index % 2 === 1;
 
   return (
@@ -25,12 +30,12 @@ export default function ProjectSpread({ project, index }: ProjectSpreadProps) {
             reversed ? "md:order-2" : "md:order-1"
           }`}
         >
-          <span className="text-xs uppercase tracking-[0.3em] text-white/40">
+          <span className="text-base uppercase tracking-[0.3em] text-white/40">
             {String(index + 1).padStart(2, "0")}
           </span>
-          <span className="text-lg">{project.company}</span>
-          <span className="text-sm italic">{project.period}</span>
-          <span className="text-sm">{project.role}</span>
+          <span className="text-xl">{project.company}</span>
+          <span className="text-lg italic">{project.period}</span>
+          <span className="text-lg">{project.role}</span>
         </div>
 
         <div
@@ -44,14 +49,22 @@ export default function ProjectSpread({ project, index }: ProjectSpreadProps) {
           >
             {project.title}
           </h3>
-          <p className="max-w-[60ch] font-serif text-base leading-relaxed text-white/80 sm:text-lg">
+          <p className="max-w-[60ch] font-serif text-lg leading-relaxed text-white/80 sm:text-xl">
             {project.description}
           </p>
+          {project.tools && project.tools.length > 0 && (
+            <p className="font-serif text-lg text-white/60">
+              <span className="uppercase tracking-[0.2em] text-white/40">
+                {toolsLabel}{" "}
+              </span>
+              {project.tools.join(" · ")}
+            </p>
+          )}
           <div className="flex flex-wrap gap-3 pt-4">
             {project.metrics.map((metric) => (
               <span
                 key={metric}
-                className="border border-white px-4 py-2 text-xs uppercase tracking-wider"
+                className="border border-white px-4 py-2 text-base uppercase tracking-wider"
               >
                 {metric}
               </span>
