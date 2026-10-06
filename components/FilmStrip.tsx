@@ -50,7 +50,7 @@ export default function FilmStrip({ frameworks, focusLabel }: FilmStripProps) {
                 >
                   {framework.name}
                 </h3>
-                <p className="max-w-[55ch] text-center font-serif text-base italic leading-relaxed text-white/80 sm:text-lg">
+                <p className="max-w-[55ch] text-center text-base leading-7 text-white/75 sm:text-lg">
                   {focusLabel}: {framework.focus}
                 </p>
               </div>

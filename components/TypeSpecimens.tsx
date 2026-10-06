@@ -76,7 +76,7 @@ export default function TypeSpecimens({
                 <span className="text-lg font-bold uppercase tracking-tight">
                   {specimen.name}
                 </span>
-                <span className="font-serif text-base italic text-white/60">
+                <span className="text-sm font-medium tabular-nums tracking-wide text-white/60">
                   {specimen.category}
                 </span>
               </div>

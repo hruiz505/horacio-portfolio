@@ -30,8 +30,8 @@ export default function Methodology({
         {title}
       </h2>
 
-      <div className="grid gap-16 md:grid-cols-2">
-        <p className="max-w-[65ch] font-serif text-lg leading-[1.8] text-white/85">
+      <div className="grid gap-10 md:grid-cols-2">
+        <p className="max-w-[65ch] text-base leading-7 text-white/75 sm:text-lg sm:leading-8">
           {methodology.body}
         </p>
 
@@ -53,15 +53,15 @@ export default function Methodology({
         <div className="mt-6 flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between">
           <span className="text-xl font-bold">
             {education.school}
-            <span className="ml-2 font-serif text-lg font-normal text-white/60">
+            <span className="ml-2 text-base font-normal text-white/60">
               — {education.location}
             </span>
           </span>
-          <span className="font-serif text-lg italic text-white/60">
+          <span className="text-sm font-medium tabular-nums tracking-wide text-white/60">
             {education.degree} · {education.date}
           </span>
         </div>
-        <p className="mt-4 font-serif text-lg text-white/60">
+        <p className="mt-4 text-base leading-7 text-white/60">
           {education.coursework.join(" · ")}
         </p>
       </div>
@@ -76,7 +76,7 @@ export default function Methodology({
               <span className="text-lg font-bold uppercase tracking-tight">
                 {cert.name}
               </span>
-              <span className="font-serif text-lg italic text-white/60">
+              <span className="text-sm font-medium tabular-nums tracking-wide text-white/60">
                 {cert.date}
               </span>
             </div>

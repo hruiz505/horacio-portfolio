@@ -58,8 +58,18 @@ export interface Methodology {
 }
 
 export interface InnovationProject {
+  id: string;
   title: string;
-  description: string;
+  category: string;
+  summary: string;
+  challenge: string;
+  process: { title: string; detail: string }[];
+  aiRole: string;
+  tools: string[];
+  evidence: string;
+  status: string;
+  image?: string;
+  imageAlt?: string;
 }
 
 export interface SpaceImage {
@@ -81,6 +91,14 @@ export interface UiStrings {
   toolsLabel: string;
   educationLabel: string;
   certificationsLabel: string;
+  exploreInnovation: string;
+  linkedinLabel: string;
+  innovationEyebrow: string;
+  aiToolsLabel: string;
+  innovationChallenge: string;
+  innovationAiRole: string;
+  innovationEvidence: string;
+  innovationTools: string;
 }
 
 export interface ContentBundle {
@@ -92,6 +110,8 @@ export interface ContentBundle {
   navLinks: NavLink[];
   frameworks: Framework[];
   methodology: Methodology;
+  innovationIntro: string;
+  aiTools: string[];
   innovationProjects: InnovationProject[];
   spaceImage: SpaceImage;
   sectionTitles: SectionTitles;
@@ -101,9 +121,9 @@ export interface ContentBundle {
 const en: ContentBundle = {
   profile: {
     name: "HORACIO RUIZ",
-    title: "Bilingual GRC & IT Operations Professional",
+    title: "Bilingual GRC & IT Operations | Applied AI Builder",
     summary:
-      "B.S. in Management Information Systems. Enforcing HIPAA, RBAC, and data privacy in high-stakes environments with zero privacy violations across 900+ critical cycles.",
+      "B.S. in Management Information Systems. Building practical AI-assisted products and research workflows grounded in privacy, security, and human review, backed by hands-on GRC and IT operations experience.",
     email: "horacio.cr.belair1107@gmail.com",
     phone: "954-556-0429",
     linkedin: "linkedin.com/in/horaciochris-ruiz970711",
@@ -196,7 +216,7 @@ const en: ContentBundle = {
     { name: "SOX", category: "Financial Compliance", icon: "FileLock" },
     { name: "SharePoint Administration", category: "Platform", icon: "FolderTree" },
     { name: "Kali Linux / Wireshark", category: "Security Tools", icon: "Terminal" },
-    { name: "Claude / Kimi / DeepSeek", category: "AI Platforms", icon: "Bot" },
+    { name: "Codex / Claude / ChatGPT", category: "AI Platforms", icon: "Bot" },
     { name: "Risk Assessments", category: "GRC Practice", icon: "Gauge" },
     { name: "Incident Response", category: "Security Operations", icon: "Siren" },
     { name: "Data Privacy Auditing", category: "Compliance Framework", icon: "ScanSearch" },
@@ -249,16 +269,139 @@ const en: ContentBundle = {
     videoUrl: "https://www.youtube.com/embed/Vak79kIt1Uc",
     videoTitle: "What is HIPAA? What do I Need to Know for HIPAA Compliance?",
   },
+  innovationIntro:
+    "I use AI as a practical engineering partner: to research, prototype, automate, and explain real systems. Each case study separates model assistance from deterministic software and shows the evidence and limits behind the work.",
+  aiTools: ["OpenAI Codex", "Claude Code", "ChatGPT", "Gemini", "Kimi", "DeepSeek"],
   innovationProjects: [
     {
-      title: "AI-Assisted DevOps Pipeline",
-      description:
-        "Architected and deployed a full-stack Next.js application by orchestrating an AI agent (Claude Code) via CLI. Managed prompt engineering, automated debugging, and CI/CD deployment, reducing traditional development time by 80%.",
+      id: "lunara-health-ai",
+      title: "Lunara: Private Cycle Health",
+      category: "Health technology · opt-in AI",
+      summary: "A local-first cycle tracker with an optional, safety-bounded health education assistant.",
+      challenge: "People need useful cycle insights without making intimate health records a default cloud product.",
+      process: [
+        { title: "Keep data local", detail: "Built the core tracker on IndexedDB with offline cycle calculations, no account, and no analytics." },
+        { title: "Make AI a choice", detail: "Gemini is behind an explicit consent gate. A small allowlist sends cycle context and recent symptom names; names, notes, dates, and full history stay out of the prompt." },
+        { title: "Add safety boundaries", detail: "The assistant provides education, not diagnosis, and directs emergency symptoms to real care. Conversations are not persisted." },
+      ],
+      aiRole: "An opt-in Gemini educator, with consent, minimal context, and a human-care boundary. This is a working product prototype, not a medical device.",
+      tools: ["Next.js", "React", "Dexie / IndexedDB", "Gemini", "Capacitor", "Claude Code"],
+      evidence: "The web app and static iOS export were built and validated; the mobile layout was checked at 375 × 812. App Store signing and release still require a Mac.",
+      status: "Web prototype verified · iOS release preparation",
     },
     {
-      title: "GRC LLM Integration",
-      description:
-        "Actively utilizing Large Language Models (Claude, Kimi, DeepSeek) to accelerate gap analysis, mapping medical privacy workflows (HIPAA) to NIST Cybersecurity Framework controls.",
+      id: "mnq-lab",
+      title: "MNQ Lab: Trading Research System",
+      category: "Quant research · responsible automation",
+      summary: "A regime-aware research, backtest, and paper-trading system designed to teach and control risk, not promise returns.",
+      challenge: "Trading rules can look convincing when costs, lookahead bias, weak samples, and risk are ignored.",
+      process: [
+        { title: "Define rules", detail: "Built closed-bar features, market regimes, supply/demand zones, and explicit risk gates." },
+        { title: "Test honestly", detail: "Added transaction costs, chronological validation, walk-forward analysis, Monte Carlo comparisons, and a sealed holdout." },
+        { title: "Keep execution gated", detail: "Created paper-trading tools, a decision journal, replay mode, and a read-only learning console. Live execution stays disabled until acceptance gates pass." },
+      ],
+      aiRole: "Claude Code supported the phased build and teaching workflow. Trade signals come from explicit rules; an LLM does not decide trades or place orders.",
+      tools: ["Python", "Streamlit", "Pandas", "NinjaTrader CSV", "Claude Code"],
+      evidence: "The recorded research run used about 58 provisional sessions, produced zero qualifying trades, and demonstrated no edge. The holdout remained sealed.",
+      status: "Research and paper trading only · no edge demonstrated",
+    },
+    {
+      id: "cerebritos-tech",
+      title: "Cerebritos Tech: Spanish STEM Video Pipeline",
+      category: "AI-assisted media production",
+      summary: "A repeatable production pipeline for short Spanish-language explainers, from episode data to assembled video.",
+      challenge: "Make technical ideas approachable in Spanish while reducing repetitive editing work.",
+      process: [
+        { title: "Structure the lesson", detail: "Organized episodes, narration segments, and scene timings as reusable Python data." },
+        { title: "Generate visuals and voice", detail: "Rendered Manim animations and thumbnails, synthesized Spanish neural narration, and created subtitles." },
+        { title: "Assemble and check", detail: "Used FFmpeg to combine animation, voice, music, and captions, then ran output checks." },
+      ],
+      aiRole: "Neural text-to-speech is part of the production chain. The video runner automates rendering and assembly; it is not an autonomous fact-checking or publishing agent.",
+      tools: ["Python", "Manim", "Edge TTS", "FFmpeg", "PySRT"],
+      evidence: "The project contains generated Spanish episode videos, narration, subtitles, and thumbnails. The image here is the actual Episode 1 thumbnail.",
+      status: "Production pipeline and media artifacts available",
+      image: "/images/projects/cerebritos-tech-ep01.png",
+      imageAlt: "Cerebritos Tech Spanish explainer thumbnail asking ¿Qué es Internet?",
+    },
+    {
+      id: "chrono-clash",
+      title: "Chrono Clash: Unity Game Prototype",
+      category: "Agent-assisted game engineering",
+      summary: "A 3D bullet-heaven game concept pairing a modern arsenal with medieval armies.",
+      challenge: "Turn a game idea into a structured prototype with combat systems, balance data, progression, and a porting plan.",
+      process: [
+        { title: "Design the systems", detail: "Wrote the prototype spec, balance plans, enemy and weapon data, and a staged roadmap." },
+        { title: "Build from the editor", detail: "Used a Unity Editor pipeline and C# gameplay systems to assemble the scene and Windows player." },
+        { title: "Validate the real build", detail: "Scene and player build steps passed, but the current Windows build crashes at launch with a corrupted data file. Runtime playtesting remains open." },
+      ],
+      aiRole: "Claude Code helped implement and debug the Unity project. The current build issue is visible; no stable gameplay screenshot or release is claimed.",
+      tools: ["Unity 6", "C#", "Unity Editor scripting", "Claude Code"],
+      evidence: "Automated build logs report successful scene assembly and player packaging. The subsequent launch test failed, so the project is still a prototype.",
+      status: "Prototype · launch validation required",
+    },
+    {
+      id: "workout-vault",
+      title: "WorkoutVault: Private Fitness Tracking",
+      category: "Privacy-first iOS product",
+      summary: "A native workout logger centered on offline use, strength progress, rest timing, and user-owned exports.",
+      challenge: "Make workout logging useful without requiring an account or network for the core routine.",
+      process: [
+        { title: "Model the training loop", detail: "Represent routines, sessions, sets, rest periods, personal records, and estimated one-rep max." },
+        { title: "Keep core features on device", detail: "Use SwiftData and SwiftUI with charts, local notifications, and manual CSV/JSON export." },
+        { title: "Set a deliberate AI boundary", detail: "The product spec explicitly excludes AI coaching and recommendations. Strength estimates use a transparent Epley formula." },
+      ],
+      aiRole: "AI is not a runtime feature by design. It demonstrates when a predictable calculation is better than an unnecessary model call.",
+      tools: ["Swift", "SwiftUI", "SwiftData", "Swift Charts", "StoreKit 2"],
+      evidence: "The Xcode project and implementation files are present. Running the iOS app requires Xcode on a Mac; a simulator capture has not been verified here.",
+      status: "iOS project source available · Mac build required",
+    },
+    {
+      id: "agentic-web-studio",
+      title: "Agentic Website-Building Workflow",
+      category: "AI agent design · small business",
+      summary: "A reusable workflow that turns business details into research, a site structure, brand direction, and a conversion-focused site.",
+      challenge: "Small businesses often have scattered details and limited time to translate them into a credible online presence.",
+      process: [
+        { title: "Collect a structured brief", detail: "Capture services, audience, location, contact route, tone, and owner-approved assets." },
+        { title: "Research and plan", detail: "Organize the sitemap, page copy, calls to action, and mobile priorities." },
+        { title: "Build and hand off", detail: "Create a branded site prototype, then explain hosting, ownership, maintenance, and client decisions." },
+      ],
+      aiRole: "ChatGPT research and site-building tools were used on the Costuras by Sule prototype. The reusable master prompt is an evolving workflow, not a fully autonomous product.",
+      tools: ["ChatGPT", "Deep Research", "Sites", "Prompt design"],
+      evidence: "A Costuras by Sule website prototype was created. Final domain ownership, commercial maintenance, and client handoff are separate decisions.",
+      status: "Website prototype built · reusable workflow in progress",
+    },
+    {
+      id: "grc-llm-workflow",
+      title: "LLMs for GRC Gap Analysis",
+      category: "Human-reviewed AI workflow",
+      summary: "Using language models to speed up first-pass mapping of medical privacy workflows to NIST Cybersecurity Framework controls.",
+      challenge: "GRC teams must translate workflows into control language without mistaking fluent model output for evidence or approval.",
+      process: [
+        { title: "Frame the workflow", detail: "Describe the process and control question, keeping the task narrow and traceable." },
+        { title: "Compare model drafts", detail: "Use Claude, Kimi, DeepSeek, ChatGPT, or Codex to surface candidate controls, gaps, and follow-up questions." },
+        { title: "Verify and document", detail: "Check suggestions against authoritative framework text and operational evidence; a human owns the final mapping." },
+      ],
+      aiRole: "Models accelerate drafting and comparison. They do not certify HIPAA compliance or validate controls without evidence.",
+      tools: ["Claude", "Kimi", "DeepSeek", "ChatGPT", "OpenAI Codex"],
+      evidence: "This is a hands-on analysis workflow, not a deployed GRC automation product. Do not enter PHI or confidential client data into public models.",
+      status: "Practiced workflow · human validation required",
+    },
+    {
+      id: "ai-assisted-delivery",
+      title: "AI-Agent Software Delivery",
+      category: "AI-assisted DevOps",
+      summary: "An agent-assisted workflow for planning and shipping a bilingual Next.js portfolio with human review at engineering boundaries.",
+      challenge: "Move from a detailed brief to a maintainable change without losing bilingual accuracy, site conventions, or release confidence.",
+      process: [
+        { title: "Shape the request", detail: "Turn the brief into typed bilingual content and a reusable component contract." },
+        { title: "Implement with an agent", detail: "Use Claude Code and Codex for code edits, iteration, and debugging; keep changes reviewable in Git." },
+        { title: "Verify before release", detail: "Run the production build and lint, commit the change, and check the deployed page instead of assuming a push went live." },
+      ],
+      aiRole: "Models accelerate implementation; build, lint, Git review, and public-site checks remain separate. The 80% speed improvement is owner-reported, not a measured benchmark.",
+      tools: ["Claude Code", "OpenAI Codex", "ChatGPT", "Next.js", "TypeScript", "GitHub", "Vercel"],
+      evidence: "This portfolio change passed its production build and lint checks and was pushed to GitHub. The production domain was still serving the prior version at the last check.",
+      status: "Source verified · deployment follow-up open",
     },
   ],
   spaceImage: {
@@ -268,7 +411,7 @@ const en: ContentBundle = {
     work: "Selected Work",
     frameworks: "Frameworks & Specimens",
     methodology: "Methodology & Approach",
-    innovation: "Innovation & AI",
+    innovation: "AI & Applied Innovation",
     contact: "Let's Connect.",
   },
   ui: {
@@ -278,15 +421,23 @@ const en: ContentBundle = {
     toolsLabel: "Tools",
     educationLabel: "Education",
     certificationsLabel: "Certifications",
+    exploreInnovation: "Follow my AI work on LinkedIn",
+    linkedinLabel: "Connect on LinkedIn",
+    innovationEyebrow: "Applied AI · Systems · Responsible Practice",
+    aiToolsLabel: "AI tools in practice",
+    innovationChallenge: "The challenge",
+    innovationAiRole: "Where AI fits",
+    innovationEvidence: "Evidence & current status",
+    innovationTools: "Tools",
   },
 };
 
 const es: ContentBundle = {
   profile: {
     name: "HORACIO RUIZ",
-    title: "Profesional Bilingüe en GRC y Operaciones de TI",
+    title: "GRC y Operaciones de TI Bilingües | Constructor de Soluciones con IA",
     summary:
-      "Licenciatura en Sistemas de Información Gerencial. Aplicando HIPAA, RBAC y privacidad de datos en entornos de alto riesgo, con cero violaciones de privacidad en más de 900 ciclos críticos.",
+      "Licenciatura en Sistemas de Información Gerencial. Desarrollo productos y flujos de investigación asistidos por IA con privacidad, seguridad y revisión humana, respaldados por experiencia práctica en GRC y operaciones de TI.",
     email: "horacio.cr.belair1107@gmail.com",
     phone: "954-556-0429",
     linkedin: "linkedin.com/in/horaciochris-ruiz970711",
@@ -379,7 +530,7 @@ const es: ContentBundle = {
     { name: "SOX", category: "Cumplimiento Financiero", icon: "FileLock" },
     { name: "Administración de SharePoint", category: "Plataforma", icon: "FolderTree" },
     { name: "Kali Linux / Wireshark", category: "Herramientas de Seguridad", icon: "Terminal" },
-    { name: "Claude / Kimi / DeepSeek", category: "Plataformas de IA", icon: "Bot" },
+    { name: "Codex / Claude / ChatGPT", category: "Plataformas de IA", icon: "Bot" },
     { name: "Evaluaciones de Riesgo", category: "Práctica de GRC", icon: "Gauge" },
     { name: "Respuesta a Incidentes", category: "Operaciones de Seguridad", icon: "Siren" },
     { name: "Auditoría de Privacidad de Datos", category: "Marco de Cumplimiento", icon: "ScanSearch" },
@@ -432,16 +583,139 @@ const es: ContentBundle = {
     videoUrl: "https://www.youtube.com/embed/l48OWQ8Vr1E",
     videoTitle: "Normas de Privacidad y Seguridad de HIPAA (en español)",
   },
+  innovationIntro:
+    "Uso la IA como apoyo práctico de ingeniería para investigar, crear prototipos, automatizar y explicar sistemas reales. Cada caso distingue la ayuda del modelo del software determinista y presenta la evidencia y los límites del trabajo.",
+  aiTools: ["OpenAI Codex", "Claude Code", "ChatGPT", "Gemini", "Kimi", "DeepSeek"],
   innovationProjects: [
     {
-      title: "Pipeline DevOps Asistido por IA",
-      description:
-        "Arquitectura y despliegue de una aplicación Next.js full-stack orquestando un agente de IA (Claude Code) a través de CLI. Gestión de prompt engineering, depuración automatizada y despliegue CI/CD, reduciendo el tiempo de desarrollo tradicional en un 80%.",
+      id: "lunara-health-ai",
+      title: "Lunara: Salud menstrual privada",
+      category: "Tecnología de salud · IA opcional",
+      summary: "Una aplicación local para seguir el ciclo menstrual con un asistente educativo opcional y limitado por seguridad.",
+      challenge: "Ofrecer información útil del ciclo sin convertir los datos íntimos de salud en un producto que dependa de la nube.",
+      process: [
+        { title: "Mantener los datos en el dispositivo", detail: "El seguimiento usa IndexedDB y cálculos locales; no requiere cuenta ni analítica." },
+        { title: "Hacer opcional la IA", detail: "Gemini requiere consentimiento explícito. Una lista mínima permite enviar contexto del ciclo y nombres recientes de síntomas; excluye nombres, notas, fechas e historial completo." },
+        { title: "Definir límites de seguridad", detail: "El asistente ofrece educación, no diagnósticos, y deriva síntomas de emergencia a atención real. Las conversaciones no se guardan." },
+      ],
+      aiRole: "Gemini funciona como educador opcional, con consentimiento, contexto mínimo y límites de atención humana. Es un prototipo de producto, no un dispositivo médico.",
+      tools: ["Next.js", "React", "Dexie / IndexedDB", "Gemini", "Capacitor", "Claude Code"],
+      evidence: "Se construyeron y validaron la aplicación web y la exportación estática para iOS; se revisó el diseño móvil a 375 × 812. La firma y publicación requieren una Mac.",
+      status: "Prototipo web verificado · preparación para iOS",
     },
     {
-      title: "Integración de LLM para GRC",
-      description:
-        "Utilización activa de Grandes Modelos de Lenguaje (Claude, Kimi, DeepSeek) para acelerar el análisis de brechas y el mapeo de flujos de trabajo de privacidad médica (HIPAA) a los controles del NIST Cybersecurity Framework.",
+      id: "mnq-lab",
+      title: "MNQ Lab: sistema de investigación de trading",
+      category: "Investigación cuantitativa · automatización responsable",
+      summary: "Sistema de investigación, backtesting y trading simulado diseñado para enseñar y controlar el riesgo, no para prometer ganancias.",
+      challenge: "Las reglas de trading pueden parecer eficaces si se ignoran costos, sesgo de anticipación, muestras pequeñas y riesgo.",
+      process: [
+        { title: "Definir reglas", detail: "Se crearon funciones con velas cerradas, regímenes de mercado, zonas de oferta y demanda y límites de riesgo explícitos." },
+        { title: "Probar con rigor", detail: "Se añadieron costos, validación cronológica, análisis walk-forward, comparaciones Monte Carlo y un conjunto holdout sellado." },
+        { title: "Mantener la ejecución bloqueada", detail: "Incluye herramientas de trading simulado, diario, reproducción y una consola educativa de solo lectura. La ejecución real sigue desactivada." },
+      ],
+      aiRole: "Claude Code apoyó la construcción por fases y el aprendizaje. Las señales son reglas explícitas; un LLM no decide operaciones ni envía órdenes.",
+      tools: ["Python", "Streamlit", "Pandas", "CSV de NinjaTrader", "Claude Code"],
+      evidence: "La ejecución documentada usó unas 58 sesiones provisionales, no generó operaciones válidas y no demostró una ventaja. El holdout permaneció sellado.",
+      status: "Solo investigación y trading simulado · ventaja no demostrada",
+    },
+    {
+      id: "cerebritos-tech",
+      title: "Cerebritos Tech: videos STEM en español",
+      category: "Producción de medios asistida por IA",
+      summary: "Un flujo repetible de producción de videos explicativos en español, desde los datos del episodio hasta el video final.",
+      challenge: "Explicar ideas técnicas en español y reducir las tareas repetitivas de edición.",
+      process: [
+        { title: "Estructurar la lección", detail: "Se organizaron episodios, narración y tiempos de escena como datos reutilizables en Python." },
+        { title: "Crear visuales y voz", detail: "Se generaron animaciones Manim y miniaturas, voz neural en español y subtítulos." },
+        { title: "Ensamblar y revisar", detail: "FFmpeg combina animación, voz, música y subtítulos; después se validan los archivos de salida." },
+      ],
+      aiRole: "La síntesis neural de voz es parte del proceso. El sistema automatiza renderizado y edición; no verifica hechos ni publica de forma autónoma.",
+      tools: ["Python", "Manim", "Edge TTS", "FFmpeg", "PySRT"],
+      evidence: "El proyecto contiene videos explicativos, narraciones, subtítulos y miniaturas en español. La imagen es la miniatura real del episodio 1.",
+      status: "Flujo de producción y materiales disponibles",
+      image: "/images/projects/cerebritos-tech-ep01.png",
+      imageAlt: "Miniatura de Cerebritos Tech con la pregunta ¿Qué es Internet?",
+    },
+    {
+      id: "chrono-clash",
+      title: "Chrono Clash: prototipo de videojuego en Unity",
+      category: "Ingeniería de videojuegos con agentes de IA",
+      summary: "Concepto de juego 3D tipo bullet-heaven que combina un arsenal moderno con ejércitos medievales.",
+      challenge: "Convertir una idea en un prototipo estructurado con combate, balance, progresión y una ruta de portabilidad.",
+      process: [
+        { title: "Diseñar los sistemas", detail: "Se definieron el prototipo, el balance, los datos de enemigos y armas y una hoja de ruta por fases." },
+        { title: "Construir desde el editor", detail: "Un flujo de Unity Editor y sistemas C# ensamblan la escena y el ejecutable para Windows." },
+        { title: "Validar la compilación real", detail: "La escena y el ejecutable se compilaron, pero el juego actual se cierra al iniciar por un archivo de datos dañado. Las pruebas de juego siguen pendientes." },
+      ],
+      aiRole: "Claude Code ayudó a implementar y depurar el proyecto Unity. El problema de inicio sigue visible; no se afirma que haya una captura estable ni un lanzamiento.",
+      tools: ["Unity 6", "C#", "Unity Editor scripting", "Claude Code"],
+      evidence: "Los registros muestran que se ensamblaron la escena y el ejecutable. La prueba posterior de inicio falló, por lo que sigue siendo un prototipo.",
+      status: "Prototipo · falta validar el inicio",
+    },
+    {
+      id: "workout-vault",
+      title: "WorkoutVault: entrenamiento privado",
+      category: "Producto iOS centrado en privacidad",
+      summary: "Registro nativo de entrenamientos para uso sin conexión, progreso de fuerza, descansos y exportación controlada por la persona.",
+      challenge: "Hacer útil el registro de ejercicios sin exigir cuenta ni conexión para las funciones principales.",
+      process: [
+        { title: "Modelar el entrenamiento", detail: "Rutinas, sesiones, series, descansos, récords y estimación de una repetición máxima." },
+        { title: "Mantener el núcleo en el dispositivo", detail: "SwiftData y SwiftUI gestionan gráficos, notificaciones locales y exportación manual CSV/JSON." },
+        { title: "Definir un límite deliberado para la IA", detail: "La especificación excluye coaching y recomendaciones de IA. La fuerza se estima con la fórmula transparente de Epley." },
+      ],
+      aiRole: "La IA no forma parte del producto en tiempo de ejecución. Es un ejemplo de cuándo un cálculo predecible supera una llamada innecesaria a un modelo.",
+      tools: ["Swift", "SwiftUI", "SwiftData", "Swift Charts", "StoreKit 2"],
+      evidence: "Están disponibles el proyecto Xcode y sus archivos de implementación. Para ejecutar la app iOS se requiere Xcode en una Mac; aquí no se ha verificado una captura del simulador.",
+      status: "Código fuente iOS disponible · requiere Mac",
+    },
+    {
+      id: "agentic-web-studio",
+      title: "Flujo agéntico para crear sitios web",
+      category: "Diseño de agentes de IA · pequeñas empresas",
+      summary: "Flujo reutilizable que convierte información de un negocio en investigación, estructura web, identidad visual y un sitio enfocado en conversiones.",
+      challenge: "Los pequeños negocios suelen tener información dispersa y poco tiempo para transformarla en una presencia digital confiable.",
+      process: [
+        { title: "Recopilar un brief estructurado", detail: "Servicios, audiencia, ubicación, contacto, tono y recursos aprobados por la persona propietaria." },
+        { title: "Investigar y planificar", detail: "Organizar el mapa del sitio, los textos, las llamadas a la acción y las prioridades móviles." },
+        { title: "Construir y entregar", detail: "Crear un prototipo de marca y explicar alojamiento, propiedad, mantenimiento y decisiones del cliente." },
+      ],
+      aiRole: "ChatGPT y herramientas de investigación y creación de sitios apoyaron el prototipo de Costuras by Sule. El prompt maestro es un flujo en evolución, no un producto totalmente autónomo.",
+      tools: ["ChatGPT", "Deep Research", "Sites", "Diseño de prompts"],
+      evidence: "Se creó un prototipo web para Costuras by Sule. El dominio final, mantenimiento comercial y entrega al cliente son decisiones aparte.",
+      status: "Prototipo web creado · flujo reutilizable en desarrollo",
+    },
+    {
+      id: "grc-llm-workflow",
+      title: "LLM para análisis de brechas GRC",
+      category: "Flujo de IA revisado por personas",
+      summary: "Uso de modelos de lenguaje para acelerar el primer mapeo de procesos de privacidad médica a controles NIST CSF.",
+      challenge: "Traducir procesos a controles sin confundir una respuesta fluida del modelo con evidencia o aprobación de cumplimiento.",
+      process: [
+        { title: "Definir el proceso", detail: "Describir el flujo y la pregunta de control de forma acotada y rastreable." },
+        { title: "Comparar borradores", detail: "Usar Claude, Kimi, DeepSeek, ChatGPT o Codex para proponer controles, brechas y preguntas." },
+        { title: "Verificar y documentar", detail: "Contrastar cada sugerencia con el marco oficial y evidencia operativa; la revisión final es humana." },
+      ],
+      aiRole: "Los modelos aceleran la redacción y comparación. No certifican HIPAA ni validan controles sin evidencia.",
+      tools: ["Claude", "Kimi", "DeepSeek", "ChatGPT", "OpenAI Codex"],
+      evidence: "Es un flujo de análisis práctico, no un producto GRC automatizado en producción. No se debe ingresar PHI ni datos confidenciales en modelos públicos.",
+      status: "Flujo practicado · requiere validación humana",
+    },
+    {
+      id: "ai-assisted-delivery",
+      title: "Entrega de software con agentes de IA",
+      category: "DevOps asistido por IA",
+      summary: "Flujo asistido por agentes para planificar y actualizar un portafolio bilingüe Next.js con revisión humana en cada fase.",
+      challenge: "Pasar de un brief detallado a un cambio mantenible sin perder precisión bilingüe ni confianza en la entrega.",
+      process: [
+        { title: "Estructurar la solicitud", detail: "Convertir el brief en datos bilingües tipados y un contrato reutilizable de componente." },
+        { title: "Implementar con agentes", detail: "Usar Claude Code y Codex para editar, iterar y depurar; mantener los cambios revisables en Git." },
+        { title: "Verificar antes de publicar", detail: "Ejecutar compilación y lint, crear el commit y revisar el sitio publicado; un push no garantiza que esté activo." },
+      ],
+      aiRole: "Los modelos aceleran la implementación; compilación, lint, revisión en Git y verificación pública son pasos distintos. La mejora del 80% es estimada, no medida con un benchmark.",
+      tools: ["Claude Code", "OpenAI Codex", "ChatGPT", "Next.js", "TypeScript", "GitHub", "Vercel"],
+      evidence: "Este cambio del portafolio pasó compilación y lint y se envió a GitHub. En la última revisión, el dominio de producción seguía sirviendo la versión anterior.",
+      status: "Código verificado · publicación pendiente",
     },
   ],
   spaceImage: {
@@ -451,7 +725,7 @@ const es: ContentBundle = {
     work: "Trabajo Seleccionado",
     frameworks: "Marcos y Especímenes",
     methodology: "Metodología y Enfoque",
-    innovation: "Innovación e IA",
+    innovation: "IA e Innovación Aplicada",
     contact: "Conectemos.",
   },
   ui: {
@@ -461,6 +735,14 @@ const es: ContentBundle = {
     toolsLabel: "Herramientas",
     educationLabel: "Educación",
     certificationsLabel: "Certificaciones",
+    exploreInnovation: "Sigue mi trabajo de IA en LinkedIn",
+    linkedinLabel: "Conectar en LinkedIn",
+    innovationEyebrow: "IA aplicada · Sistemas · Práctica responsable",
+    aiToolsLabel: "Herramientas de IA en práctica",
+    innovationChallenge: "El desafío",
+    innovationAiRole: "El papel de la IA",
+    innovationEvidence: "Evidencia y estado actual",
+    innovationTools: "Herramientas",
   },
 };
 

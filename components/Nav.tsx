@@ -38,7 +38,7 @@ export default function Nav({ navLinks, language, onToggleLanguage }: NavProps) 
   };
 
   return (
-    <header className="fixed inset-x-0 top-0 z-40 border-b border-white bg-black/50 backdrop-blur-md">
+    <header className="fixed inset-x-0 top-0 z-40 border-b border-white/10 bg-[#0b0e0f]/90 backdrop-blur-md">
       <audio
         ref={audioRef}
         src={ambientAudioUrl}
@@ -60,8 +60,8 @@ export default function Nav({ navLinks, language, onToggleLanguage }: NavProps) 
           HR
         </motion.a>
 
-        <div className="hidden items-center gap-6 text-base uppercase tracking-[0.2em] md:flex">
-          <nav className="flex items-center gap-6">
+        <div className="hidden items-center gap-5 text-xs font-semibold uppercase tracking-[0.12em] lg:flex">
+          <nav className="flex items-center gap-5">
             {navLinks.map((link) => (
               <a
                 key={link.href}

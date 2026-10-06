@@ -17,9 +17,6 @@ export default function Home() {
 
   return (
     <>
-      <span className="fixed bottom-3 right-4 z-10 font-serif text-xs italic text-white/40">
-        {t.spaceImage.credit}
-      </span>
       <Nav
         navLinks={t.navLinks}
         language={language}
@@ -56,6 +53,12 @@ export default function Home() {
         <Innovation
           projects={t.innovationProjects}
           title={t.sectionTitles.innovation}
+          intro={t.innovationIntro}
+          tools={t.aiTools}
+          linkedinUrl={t.profile.linkedin}
+          exploreLabel={t.ui.exploreInnovation}
+          linkedinLabel={t.ui.linkedinLabel}
+          labels={t.ui}
         />
         <Contact profile={t.profile} title={t.sectionTitles.contact} />
       </main>

@@ -16,7 +16,7 @@ function UnderlineLink({ href, children }: { href: string; children: ReactNode }
       initial="rest"
       whileHover="hover"
       animate="rest"
-      className="relative inline-block py-1 font-serif text-lg sm:text-xl"
+      className="relative inline-block py-1 text-base font-medium sm:text-lg"
     >
       {children}
       <motion.span
@@ -33,7 +33,7 @@ export default function Contact({ profile, title }: ContactProps) {
   return (
     <section
       id="contact"
-      className="flex min-h-screen flex-col items-center justify-center gap-10 border-t border-white px-6 text-center"
+      className="flex min-h-[75svh] flex-col items-center justify-center gap-10 border-t border-white/15 px-6 py-20 text-center"
     >
       <h2
         className="font-black leading-none tracking-tight"

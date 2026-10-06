@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
@@ -7,55 +7,17 @@ const inter = Inter({
   subsets: ["latin"],
 });
 
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
-  subsets: ["latin"],
-  style: ["normal", "italic"],
-});
-
 export const metadata: Metadata = {
-  title: "Horacio Ruiz — GRC & IT Operations",
+  title: "Horacio Ruiz — Applied AI, GRC & IT Operations",
   description:
-    "Bilingual GRC & IT Operations Professional. Enforcing HIPAA, RBAC, and data privacy in high-stakes environments.",
+    "Bilingual GRC and IT operations professional building practical AI-assisted products and research workflows with privacy, security, and human review.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
-      <body className="relative text-white antialiased">
-        <div
-          aria-hidden="true"
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            zIndex: 0,
-            backgroundColor: "#000000",
-            backgroundImage: "url(/images/pillars-of-creation.png)",
-            backgroundSize: "cover",
-            backgroundPosition: "center center",
-            backgroundRepeat: "no-repeat",
-            backgroundAttachment: "scroll",
-            filter: "grayscale(100%) contrast(110%) brightness(60%)",
-            pointerEvents: "none",
-          }}
-        />
-        <div
-          aria-hidden="true"
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            zIndex: 1,
-            backgroundColor: "rgba(0, 0, 0, 0.65)",
-            pointerEvents: "none",
-          }}
-        />
-        <div className="relative z-10">{children}</div>
+    <html lang="en" className={inter.variable}>
+      <body className="min-h-screen bg-[#0b0e0f] text-white antialiased">
+        {children}
       </body>
     </html>
   );

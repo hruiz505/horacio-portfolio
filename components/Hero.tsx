@@ -26,7 +26,7 @@ export default function Hero({ profile, scrollLabel }: HeroProps) {
   return (
     <section
       id="top"
-      className="relative flex min-h-screen flex-col items-center justify-center px-6 pt-24 text-center"
+      className="relative flex min-h-[92svh] flex-col items-center justify-center px-6 pb-24 pt-28 text-center"
     >
       <h1
         className="flex flex-wrap justify-center font-black leading-none tracking-tight"
@@ -50,7 +50,7 @@ export default function Hero({ profile, scrollLabel }: HeroProps) {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: settleDelay + 0.2, duration: 0.6, ease: "easeOut" }}
-        className="mt-6 font-serif text-lg italic text-white/80 sm:text-2xl"
+        className="mt-6 max-w-4xl text-base font-semibold leading-7 text-emerald-200 sm:text-xl"
       >
         {profile.title}
       </motion.p>
@@ -59,7 +59,7 @@ export default function Hero({ profile, scrollLabel }: HeroProps) {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: settleDelay + 0.4, duration: 0.6, ease: "easeOut" }}
-        className="mt-6 max-w-[60ch] font-serif text-lg leading-relaxed text-white/70 sm:text-xl"
+        className="mt-5 max-w-[64ch] text-base leading-7 text-white/70 sm:text-lg sm:leading-8"
       >
         {profile.summary}
       </motion.p>
@@ -68,7 +68,7 @@ export default function Hero({ profile, scrollLabel }: HeroProps) {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: settleDelay + 0.6, duration: 0.6 }}
-        className="absolute bottom-10 flex flex-col items-center gap-2 text-base uppercase tracking-[0.3em] text-white/60"
+        className="absolute bottom-8 flex flex-col items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-white/55"
       >
         <span>{scrollLabel}</span>
         <motion.div
