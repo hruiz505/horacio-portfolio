@@ -28,11 +28,11 @@ export default function Innovation({
       <div className="mx-auto max-w-7xl">
         <div className="grid gap-8 border-b border-white/15 pb-10 md:grid-cols-[1.2fr_0.8fr] md:items-end md:pb-14">
           <div>
-            <p className="mb-5 text-sm font-semibold uppercase tracking-[0.18em] text-emerald-300">
+            <p className="mb-5 text-sm font-semibold uppercase tracking-[0.18em] text-[#c3bd76]">
               {labels.innovationEyebrow}
             </p>
             <h2 className="flex items-center gap-3 text-4xl font-bold leading-tight tracking-tight sm:text-6xl lg:text-7xl">
-              <Sparkles aria-hidden="true" className="h-8 w-8 shrink-0 text-emerald-300 sm:h-11 sm:w-11" strokeWidth={1.7} />
+              <Sparkles aria-hidden="true" className="h-8 w-8 shrink-0 text-[#c3bd76] sm:h-11 sm:w-11" strokeWidth={1.7} />
               {title}
             </h2>
           </div>
@@ -42,7 +42,7 @@ export default function Innovation({
               href={`https://${linkedinUrl}`}
               target="_blank"
               rel="noreferrer"
-              className="mt-5 inline-flex items-center gap-2 border-b border-emerald-300/70 pb-1 text-sm font-semibold text-white transition-colors hover:text-emerald-200"
+              className="mt-5 inline-flex items-center gap-2 border-b border-[#a3a16a]/80 pb-1 text-sm font-semibold text-white transition-colors hover:text-[#d4ce8f]"
             >
               {linkedinLabel}<ArrowUpRight aria-hidden="true" size={16} />
             </a>
@@ -78,8 +78,8 @@ export default function Innovation({
                 </figure>
               )}
 
-              <div className="mt-6 border-l-2 border-emerald-300/70 pl-4">
-                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-emerald-200">{labels.innovationChallenge}</p>
+              <div className="mt-6 border-l-2 border-[#a3a16a]/80 pl-4">
+                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#c3bd76]">{labels.innovationChallenge}</p>
                 <p className="mt-2 text-sm leading-6 text-white/75">{project.challenge}</p>
               </div>
 
@@ -103,7 +103,7 @@ export default function Innovation({
               <div className="mt-5 border-t border-white/10 pt-4">
                 <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white/50">{labels.innovationEvidence}</p>
                 <p className="mt-2 text-sm leading-6 text-white/65">{project.evidence}</p>
-                <p className="mt-3 text-xs font-semibold leading-5 text-emerald-200">{project.status}</p>
+                <p className="mt-3 text-xs font-semibold leading-5 text-[#c3bd76]">{project.status}</p>
               </div>
             </article>
           ))}

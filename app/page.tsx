@@ -60,7 +60,12 @@ export default function Home() {
           linkedinLabel={t.ui.linkedinLabel}
           labels={t.ui}
         />
-        <Contact profile={t.profile} title={t.sectionTitles.contact} />
+        <Contact
+          profile={t.profile}
+          title={t.sectionTitles.contact}
+          logoLabel={t.ui.downloadLogo}
+          imageCredit={t.spaceImage.credit}
+        />
       </main>
     </>
   );

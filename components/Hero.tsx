@@ -50,7 +50,7 @@ export default function Hero({ profile, scrollLabel }: HeroProps) {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: settleDelay + 0.2, duration: 0.6, ease: "easeOut" }}
-        className="mt-6 max-w-4xl text-base font-semibold leading-7 text-emerald-200 sm:text-xl"
+        className="mt-6 max-w-4xl text-base font-semibold leading-7 text-[#c3bd76] sm:text-xl"
       >
         {profile.title}
       </motion.p>

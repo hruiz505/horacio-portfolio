@@ -7,6 +7,8 @@ import type { Profile } from "@/data/content";
 interface ContactProps {
   profile: Profile;
   title: string;
+  logoLabel: string;
+  imageCredit: string;
 }
 
 function UnderlineLink({ href, children }: { href: string; children: ReactNode }) {
@@ -29,11 +31,11 @@ function UnderlineLink({ href, children }: { href: string; children: ReactNode }
   );
 }
 
-export default function Contact({ profile, title }: ContactProps) {
+export default function Contact({ profile, title, logoLabel, imageCredit }: ContactProps) {
   return (
     <section
       id="contact"
-      className="flex min-h-[75svh] flex-col items-center justify-center gap-10 border-t border-white/15 px-6 py-20 text-center"
+      className="relative flex min-h-[75svh] flex-col items-center justify-center gap-10 border-t border-white/15 px-6 py-20 text-center"
     >
       <h2
         className="font-black leading-none tracking-tight"
@@ -45,6 +47,13 @@ export default function Contact({ profile, title }: ContactProps) {
         <UnderlineLink href={`mailto:${profile.email}`}>
           {profile.email}
         </UnderlineLink>
+        <a
+          href="/horacio-ruiz-logo.svg"
+          download="horacio-ruiz-logo.svg"
+          className="mt-4 inline-flex items-center gap-2 rounded-full border border-[#a3a16a]/70 px-5 py-2.5 text-sm font-semibold text-[#d4ce8f] transition-colors hover:bg-[#a3a16a]/15"
+        >
+          {logoLabel}
+        </a>
         <UnderlineLink href={`tel:${profile.phone}`}>
           {profile.phone}
         </UnderlineLink>
@@ -52,6 +61,9 @@ export default function Contact({ profile, title }: ContactProps) {
           {profile.linkedin}
         </UnderlineLink>
       </div>
+      <span className="absolute bottom-2 right-4 max-w-[85vw] text-right text-[9px] leading-3 text-white/40 sm:text-[10px]">
+        {imageCredit}
+      </span>
     </section>
   );
 }

@@ -64,7 +64,7 @@ export default function ProjectSpread({
             {project.metrics.map((metric) => (
               <span
                 key={metric}
-                className="text-xs font-semibold uppercase tracking-[0.12em] text-emerald-200"
+                className="text-xs font-semibold uppercase tracking-[0.12em] text-[#c3bd76]"
               >
                 {metric}
               </span>

@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu } from "lucide-react";
 import AudioToggle from "@/components/AudioToggle";
+import BrandMark from "@/components/BrandMark";
 import { ambientAudioCredit, ambientAudioUrl } from "@/data/content";
 import type { Language, NavLink } from "@/data/content";
 
@@ -38,7 +39,7 @@ export default function Nav({ navLinks, language, onToggleLanguage }: NavProps) 
   };
 
   return (
-    <header className="fixed inset-x-0 top-0 z-40 border-b border-white/10 bg-[#0b0e0f]/90 backdrop-blur-md">
+    <header className="fixed inset-x-0 top-0 z-40 border-b border-[#a3a16a]/20 bg-[#11120d]/85 backdrop-blur-md">
       <audio
         ref={audioRef}
         src={ambientAudioUrl}
@@ -55,9 +56,10 @@ export default function Nav({ navLinks, language, onToggleLanguage }: NavProps) 
           whileInView={{ opacity: 1, rotate: 0, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, ease: "easeOut" }}
-          className="text-xl font-black tracking-tight"
+          aria-label="Horacio Ruiz — home"
+          className="rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#b6b176]"
         >
-          HR
+          <BrandMark />
         </motion.a>
 
         <div className="hidden items-center gap-5 text-xs font-semibold uppercase tracking-[0.12em] lg:flex">

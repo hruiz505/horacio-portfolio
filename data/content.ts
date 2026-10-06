@@ -99,6 +99,7 @@ export interface UiStrings {
   innovationAiRole: string;
   innovationEvidence: string;
   innovationTools: string;
+  downloadLogo: string;
 }
 
 export interface ContentBundle {
@@ -216,7 +217,7 @@ const en: ContentBundle = {
     { name: "SOX", category: "Financial Compliance", icon: "FileLock" },
     { name: "SharePoint Administration", category: "Platform", icon: "FolderTree" },
     { name: "Kali Linux / Wireshark", category: "Security Tools", icon: "Terminal" },
-    { name: "Codex / Claude / ChatGPT", category: "AI Platforms", icon: "Bot" },
+    { name: "Codex / Claude Code / ChatGPT", category: "AI Platforms", icon: "Bot" },
     { name: "Risk Assessments", category: "GRC Practice", icon: "Gauge" },
     { name: "Incident Response", category: "Security Operations", icon: "Siren" },
     { name: "Data Privacy Auditing", category: "Compliance Framework", icon: "ScanSearch" },
@@ -275,9 +276,9 @@ const en: ContentBundle = {
   innovationProjects: [
     {
       id: "lunara-health-ai",
-      title: "Lunara: Private Cycle Health",
-      category: "Health technology · opt-in AI",
-      summary: "A local-first cycle tracker with an optional, safety-bounded health education assistant.",
+      title: "Lunara: Private Cycle Calendar",
+      category: "Health web app · opt-in AI",
+      summary: "A private cycle calendar for daily logging and predictions, with an optional health education assistant.",
       challenge: "People need useful cycle insights without making intimate health records a default cloud product.",
       process: [
         { title: "Keep data local", detail: "Built the core tracker on IndexedDB with offline cycle calculations, no account, and no analytics." },
@@ -341,19 +342,37 @@ const en: ContentBundle = {
     },
     {
       id: "workout-vault",
-      title: "WorkoutVault: Private Fitness Tracking",
-      category: "Privacy-first iOS product",
-      summary: "A native workout logger centered on offline use, strength progress, rest timing, and user-owned exports.",
+      title: "WorkoutVault: Private Fitness Tracker",
+      category: "Fitness web app · privacy-first, AI-assisted build",
+      summary: "A training tracker for routines, workout history, progress, rest timing, and data the athlete can export.",
       challenge: "Make workout logging useful without requiring an account or network for the core routine.",
       process: [
         { title: "Model the training loop", detail: "Represent routines, sessions, sets, rest periods, personal records, and estimated one-rep max." },
         { title: "Keep core features on device", detail: "Use SwiftData and SwiftUI with charts, local notifications, and manual CSV/JSON export." },
         { title: "Set a deliberate AI boundary", detail: "The product spec explicitly excludes AI coaching and recommendations. Strength estimates use a transparent Epley formula." },
       ],
-      aiRole: "AI is not a runtime feature by design. It demonstrates when a predictable calculation is better than an unnecessary model call.",
-      tools: ["Swift", "SwiftUI", "SwiftData", "Swift Charts", "StoreKit 2"],
-      evidence: "The Xcode project and implementation files are present. Running the iOS app requires Xcode on a Mac; a simulator capture has not been verified here.",
-      status: "iOS project source available · Mac build required",
+      aiRole: "AI assisted product planning and implementation. The one-rep-max estimate remains a transparent Epley calculation; no AI coaching feature is claimed as shipped.",
+      tools: ["WorkoutVault", "AI-assisted product design", "Privacy-first data design"],
+      evidence: "Project files cover routine design, workout logging, rest timing, personal records, charts, and CSV/JSON export. A public demo link is not attached yet.",
+      status: "Fitness product prototype · demo link to add",
+    },
+    {
+      id: "three-router-home-network",
+      title: "Three-Router Privacy-Focused Home Network",
+      category: "Home network engineering · privacy routing",
+      summary: "A three-router home setup that coordinates multiple connection paths, privacy routes, and network zones.",
+      challenge: "Keep different internet links and privacy-routing needs organized in one practical home network.",
+      process: [
+        { title: "Map the paths", detail: "Plan how the three routers divide separate links and privacy-related routes." },
+        { title: "Give each router a role", detail: "Configure the devices as cooperating parts of a single home-network system." },
+        { title: "Check the traffic flow", detail: "Test connectivity and confirm devices use the intended route for each network need." },
+      ],
+      aiRole: "AI supports research and troubleshooting; router configuration controls traffic. No language model sits in the network forwarding path.",
+      tools: ["Three-router home network", "Privacy routing", "AI-assisted research"],
+      evidence: "The owner describes a three-router setup combining different links and privacy routes. Device models, exact topology, and performance measurements are not documented here.",
+      status: "Personal infrastructure build · topology details to document",
+      image: "/images/projects/home-router-network.svg",
+      imageAlt: "Illustrative three-router home-network concept; it does not show the owner's exact device configuration.",
     },
     {
       id: "agentic-web-studio",
@@ -429,6 +448,7 @@ const en: ContentBundle = {
     innovationAiRole: "Where AI fits",
     innovationEvidence: "Evidence & current status",
     innovationTools: "Tools",
+    downloadLogo: "Download my logo (SVG)",
   },
 };
 
@@ -530,7 +550,7 @@ const es: ContentBundle = {
     { name: "SOX", category: "Cumplimiento Financiero", icon: "FileLock" },
     { name: "Administración de SharePoint", category: "Plataforma", icon: "FolderTree" },
     { name: "Kali Linux / Wireshark", category: "Herramientas de Seguridad", icon: "Terminal" },
-    { name: "Codex / Claude / ChatGPT", category: "Plataformas de IA", icon: "Bot" },
+    { name: "Codex / Claude Code / ChatGPT", category: "Plataformas de IA", icon: "Bot" },
     { name: "Evaluaciones de Riesgo", category: "Práctica de GRC", icon: "Gauge" },
     { name: "Respuesta a Incidentes", category: "Operaciones de Seguridad", icon: "Siren" },
     { name: "Auditoría de Privacidad de Datos", category: "Marco de Cumplimiento", icon: "ScanSearch" },
@@ -589,9 +609,9 @@ const es: ContentBundle = {
   innovationProjects: [
     {
       id: "lunara-health-ai",
-      title: "Lunara: Salud menstrual privada",
-      category: "Tecnología de salud · IA opcional",
-      summary: "Una aplicación local para seguir el ciclo menstrual con un asistente educativo opcional y limitado por seguridad.",
+      title: "Lunara: Calendario de ciclo privado",
+      category: "Aplicación web de salud · IA opcional",
+      summary: "Calendario privado para registrar ciclos y consultar predicciones, con un asistente educativo opcional.",
       challenge: "Ofrecer información útil del ciclo sin convertir los datos íntimos de salud en un producto que dependa de la nube.",
       process: [
         { title: "Mantener los datos en el dispositivo", detail: "El seguimiento usa IndexedDB y cálculos locales; no requiere cuenta ni analítica." },
@@ -655,19 +675,37 @@ const es: ContentBundle = {
     },
     {
       id: "workout-vault",
-      title: "WorkoutVault: entrenamiento privado",
-      category: "Producto iOS centrado en privacidad",
-      summary: "Registro nativo de entrenamientos para uso sin conexión, progreso de fuerza, descansos y exportación controlada por la persona.",
+      title: "WorkoutVault: registro privado de entrenamiento",
+      category: "Aplicación web de fitness · privada y asistida por IA",
+      summary: "Registro de entrenamiento para rutinas, historial, progreso, descansos y exportación de datos bajo control del atleta.",
       challenge: "Hacer útil el registro de ejercicios sin exigir cuenta ni conexión para las funciones principales.",
       process: [
         { title: "Modelar el entrenamiento", detail: "Rutinas, sesiones, series, descansos, récords y estimación de una repetición máxima." },
         { title: "Mantener el núcleo en el dispositivo", detail: "SwiftData y SwiftUI gestionan gráficos, notificaciones locales y exportación manual CSV/JSON." },
         { title: "Definir un límite deliberado para la IA", detail: "La especificación excluye coaching y recomendaciones de IA. La fuerza se estima con la fórmula transparente de Epley." },
       ],
-      aiRole: "La IA no forma parte del producto en tiempo de ejecución. Es un ejemplo de cuándo un cálculo predecible supera una llamada innecesaria a un modelo.",
-      tools: ["Swift", "SwiftUI", "SwiftData", "Swift Charts", "StoreKit 2"],
-      evidence: "Están disponibles el proyecto Xcode y sus archivos de implementación. Para ejecutar la app iOS se requiere Xcode en una Mac; aquí no se ha verificado una captura del simulador.",
-      status: "Código fuente iOS disponible · requiere Mac",
+      aiRole: "La IA apoyó el diseño y la implementación. La estimación de una repetición máxima usa la fórmula transparente de Epley; no se presenta coaching de IA como función publicada.",
+      tools: ["WorkoutVault", "Diseño de producto asistido por IA", "Diseño de datos privados"],
+      evidence: "Los archivos cubren rutinas, registro de ejercicios, descansos, récords, gráficos y exportación CSV/JSON. Falta enlazar una demo pública.",
+      status: "Prototipo de fitness · falta añadir enlace a demo",
+    },
+    {
+      id: "three-router-home-network",
+      title: "Red doméstica privada con tres routers",
+      category: "Redes domésticas · rutas privadas",
+      summary: "Sistema doméstico de tres routers que coordina varios enlaces, rutas de privacidad y zonas de red.",
+      challenge: "Organizar distintos enlaces de internet y necesidades de privacidad en una sola red doméstica práctica.",
+      process: [
+        { title: "Definir las rutas", detail: "Planificar cómo los tres routers dividen enlaces separados y rutas relacionadas con privacidad." },
+        { title: "Asignar un rol a cada router", detail: "Configurar los dispositivos como partes coordinadas de un sistema doméstico." },
+        { title: "Comprobar el tráfico", detail: "Probar la conectividad y confirmar que los dispositivos usan la ruta prevista para cada necesidad." },
+      ],
+      aiRole: "La IA apoya la investigación y resolución de problemas; la configuración de los routers controla el tráfico. Ningún modelo de lenguaje enruta paquetes.",
+      tools: ["Red doméstica de tres routers", "Rutas privadas", "Investigación asistida por IA"],
+      evidence: "El propietario describe tres routers que combinan distintos enlaces y rutas privadas. Aquí no están documentados los modelos, la topología exacta ni mediciones de rendimiento.",
+      status: "Infraestructura personal · topología pendiente de documentar",
+      image: "/images/projects/home-router-network.svg",
+      imageAlt: "Diagrama conceptual de red doméstica con tres routers; no representa la configuración exacta del propietario.",
     },
     {
       id: "agentic-web-studio",
@@ -743,6 +781,7 @@ const es: ContentBundle = {
     innovationAiRole: "El papel de la IA",
     innovationEvidence: "Evidencia y estado actual",
     innovationTools: "Herramientas",
+    downloadLogo: "Descargar mi logo (SVG)",
   },
 };
 
