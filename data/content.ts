@@ -57,6 +57,11 @@ export interface Methodology {
   videoTitle: string;
 }
 
+export interface InnovationProject {
+  title: string;
+  description: string;
+}
+
 export interface SpaceImage {
   credit: string;
 }
@@ -65,6 +70,7 @@ export interface SectionTitles {
   work: string;
   frameworks: string;
   methodology: string;
+  innovation: string;
   contact: string;
 }
 
@@ -86,6 +92,7 @@ export interface ContentBundle {
   navLinks: NavLink[];
   frameworks: Framework[];
   methodology: Methodology;
+  innovationProjects: InnovationProject[];
   spaceImage: SpaceImage;
   sectionTitles: SectionTitles;
   ui: UiStrings;
@@ -110,7 +117,7 @@ const en: ContentBundle = {
       period: "April 2024 – Present",
       role: "Data Privacy & HIPAA Compliance Specialist",
       description:
-        "High-acuity Cardiology and ER environments. Facilitating zero-error PHI exchange across 700+ calls per period in full compliance with HIPAA regulations.",
+        "Secured high-acuity Cardiology and ER remote communication environments. Identified PHI data leakage risks during 700+ monthly calls. Enforced strict HIPAA data privacy controls and access protocols. Achieved zero privacy violations across 900+ critical cycles with a 91% QA score.",
       metrics: [
         "91% QA Score",
         "Gold Tier Performer",
@@ -125,7 +132,7 @@ const en: ContentBundle = {
       period: "Nov 2023 – Sept 2024",
       role: "Access Control & Security Operations Lead",
       description:
-        "Engineered and enforced a comprehensive Role-Based Access Control policy across enterprise systems, reducing insider threat exposure. Analyzed KPI trends and deployed a secure, centralized SharePoint knowledge base on a private VLAN.",
+        "Secured enterprise remote answering service systems. Identified insider threat exposure due to overly permissive editing rights. Engineered and enforced a Role-Based Access Control (RBAC) policy using the principle of least privilege on a private VLAN SharePoint. Reduced Tier 3 incident escalations by 45% within 4 months.",
       metrics: [
         "45% Tier 3 Reduction in 4 Months",
         "Principle of Least Privilege",
@@ -155,13 +162,27 @@ const en: ContentBundle = {
       period: "May 2021 – Jan 2023",
       role: "IT Incident Response & Workflow Analyst",
       description:
-        "Developed and deployed automated scripting tools to categorize and route incoming IT tickets. Provided Tier 1 technical troubleshooting and incident response via Zendesk CRM.",
+        "Secured high-volume IT support operations. Identified workflow bottlenecks leading to delayed incident response. Developed automated scripting tools and utilized Zendesk CRM to route tickets. Reduced manual processing time by 20% and exceeded SLA performance metrics.",
       metrics: [
         "20% Reduction in Manual Processing",
         "SLA Exceeded",
         "Zendesk CRM Automation",
       ],
       tools: ["Zendesk CRM"],
+    },
+    {
+      id: "grc-framework-simulation",
+      title: "Enterprise GRC Framework Simulation",
+      company: "Independent Capstone Project",
+      period: "2024",
+      role: "GRC Analyst (Simulation)",
+      description:
+        "An independent capstone project conducting a theoretical gap analysis for a simulated small medical clinic. Mapped patient privacy workflows (HIPAA) and payment processing flows to enterprise regulatory requirements, including PCI DSS, CCPA, and GDPR. Utilized the NIST Cybersecurity Framework (CSF) and CIS Controls as the implementation baseline to identify control deficiencies and draft remediation guidance documentation.",
+      metrics: [
+        "NIST CSF & CIS Controls",
+        "PCI DSS, GDPR, CCPA, SOX Mapping",
+        "Gap Analysis & Remediation",
+      ],
     },
   ],
   specimens: [
@@ -170,6 +191,9 @@ const en: ContentBundle = {
     { name: "ISO 27001 Fundamentals", category: "Security Standard", icon: "FileLock" },
     { name: "RBAC / IAM", category: "Access Control", icon: "Fingerprint" },
     { name: "PCI DSS", category: "Payment Compliance", icon: "CreditCard" },
+    { name: "GDPR", category: "Data Privacy", icon: "ShieldCheck" },
+    { name: "CCPA", category: "Data Privacy", icon: "ShieldCheck" },
+    { name: "SOX", category: "Financial Compliance", icon: "FileLock" },
     { name: "SharePoint Administration", category: "Platform", icon: "FolderTree" },
     { name: "Kali Linux / Wireshark", category: "Security Tools", icon: "Terminal" },
     { name: "Claude / Kimi / DeepSeek", category: "AI Platforms", icon: "Bot" },
@@ -200,6 +224,7 @@ const en: ContentBundle = {
     { label: "Work", href: "#work" },
     { label: "Frameworks", href: "#frameworks" },
     { label: "Methodology", href: "#methodology" },
+    { label: "Innovation & AI", href: "#innovation" },
     { label: "Contact", href: "#contact" },
   ],
   frameworks: [
@@ -224,6 +249,18 @@ const en: ContentBundle = {
     videoUrl: "https://www.youtube.com/embed/Vak79kIt1Uc",
     videoTitle: "What is HIPAA? What do I Need to Know for HIPAA Compliance?",
   },
+  innovationProjects: [
+    {
+      title: "AI-Assisted DevOps Pipeline",
+      description:
+        "Architected and deployed a full-stack Next.js application by orchestrating an AI agent (Claude Code) via CLI. Managed prompt engineering, automated debugging, and CI/CD deployment, reducing traditional development time by 80%.",
+    },
+    {
+      title: "GRC LLM Integration",
+      description:
+        "Actively utilizing Large Language Models (Claude, Kimi, DeepSeek) to accelerate gap analysis, mapping medical privacy workflows (HIPAA) to NIST Cybersecurity Framework controls.",
+    },
+  ],
   spaceImage: {
     credit: "NASA, ESA, CSA, STScI — Pillars of Creation, James Webb Space Telescope",
   },
@@ -231,6 +268,7 @@ const en: ContentBundle = {
     work: "Selected Work",
     frameworks: "Frameworks & Specimens",
     methodology: "Methodology & Approach",
+    innovation: "Innovation & AI",
     contact: "Let's Connect.",
   },
   ui: {
@@ -262,7 +300,7 @@ const es: ContentBundle = {
       period: "Abril 2024 – Presente",
       role: "Especialista en Privacidad de Datos y Cumplimiento de HIPAA",
       description:
-        "Entornos de alta complejidad en Cardiología y Urgencias. Facilitando el intercambio de PHI sin errores en más de 700 llamadas por período, en pleno cumplimiento de las regulaciones HIPAA.",
+        "Aseguré entornos de comunicación remota de alta complejidad en Cardiología y UR. Identifiqué riesgos de fuga de PHI en más de 700 llamadas mensuales. Apliqué estrictos controles de privacidad de datos y protocolos de acceso HIPAA. Logré cero violaciones de privacidad en más de 900 ciclos críticos con un 91% de puntaje QA.",
       metrics: [
         "91% en Control de Calidad",
         "Nivel Oro de Desempeño",
@@ -277,7 +315,7 @@ const es: ContentBundle = {
       period: "Nov 2023 – Sept 2024",
       role: "Líder de Control de Acceso y Operaciones de Seguridad",
       description:
-        "Diseñé e implementé una política integral de Control de Acceso Basado en Roles en sistemas empresariales, reduciendo la exposición a amenazas internas. Analicé tendencias de KPI y desplegué una base de conocimiento centralizada y segura en SharePoint sobre una VLAN privada.",
+        "Aseguré sistemas empresariales remotos de contestador. Identifiqué exposición a amenazas internas debido a derechos de edición excesivos. Diseñé e implementé una política de Control de Acceso Basado en Roles (RBAC) usando el principio de mínimo privilegio en una VLAN privada de SharePoint. Reduje las escalaciones de incidentes de Nivel 3 en un 45% en 4 meses.",
       metrics: [
         "45% de Reducción de Nivel 3 en 4 Meses",
         "Principio de Privilegio Mínimo",
@@ -307,13 +345,27 @@ const es: ContentBundle = {
       period: "Mayo 2021 – Ene 2023",
       role: "Analista de Respuesta a Incidentes de TI y Flujos de Trabajo",
       description:
-        "Desarrollé e implementé herramientas de scripting automatizadas para categorizar y direccionar tickets de TI entrantes. Brindé soporte técnico de Nivel 1 y respuesta a incidentes a través de Zendesk CRM.",
+        "Aseguré operaciones de soporte de TI de alto volumen. Identifiqué cuellos de botella en el flujo de trabajo que retrasaban la respuesta a incidentes. Desarrollé herramientas de script automatizadas y utilicé Zendesk CRM para enrutar tickets. Reduje el tiempo de procesamiento manual en un 20% y superé las métricas de rendimiento SLA.",
       metrics: [
         "20% de Reducción en Procesamiento Manual",
         "SLA Superado",
         "Automatización de Zendesk CRM",
       ],
       tools: ["Zendesk CRM"],
+    },
+    {
+      id: "grc-framework-simulation",
+      title: "Simulación de Marco de Trabajo GRC Empresarial",
+      company: "Proyecto Capstone Independiente",
+      period: "2024",
+      role: "Analista GRC (Simulación)",
+      description:
+        "Un proyecto capstone independiente que realiza un análisis de brechas teórico para una clínica médica pequeña simulada. Mapeó los flujos de trabajo de privacidad del paciente (HIPAA) y los flujos de procesamiento de pagos con los requisitos regulatorios empresariales, incluidos PCI DSS, CCPA y GDPR. Utilizó el NIST Cybersecurity Framework (CSF) y los Controles CIS como base de implementación para identificar deficiencias de control y redactar documentación de guía de remediación.",
+      metrics: [
+        "NIST CSF y Controles CIS",
+        "Mapeo PCI DSS, GDPR, CCPA, SOX",
+        "Análisis de Brechas y Remediación",
+      ],
     },
   ],
   specimens: [
@@ -322,6 +374,9 @@ const es: ContentBundle = {
     { name: "Fundamentos de ISO 27001", category: "Estándar de Seguridad", icon: "FileLock" },
     { name: "RBAC / IAM", category: "Control de Acceso", icon: "Fingerprint" },
     { name: "PCI DSS", category: "Cumplimiento de Pagos", icon: "CreditCard" },
+    { name: "GDPR", category: "Privacidad de Datos", icon: "ShieldCheck" },
+    { name: "CCPA", category: "Privacidad de Datos", icon: "ShieldCheck" },
+    { name: "SOX", category: "Cumplimiento Financiero", icon: "FileLock" },
     { name: "Administración de SharePoint", category: "Plataforma", icon: "FolderTree" },
     { name: "Kali Linux / Wireshark", category: "Herramientas de Seguridad", icon: "Terminal" },
     { name: "Claude / Kimi / DeepSeek", category: "Plataformas de IA", icon: "Bot" },
@@ -352,6 +407,7 @@ const es: ContentBundle = {
     { label: "Trabajo", href: "#work" },
     { label: "Marcos", href: "#frameworks" },
     { label: "Metodología", href: "#methodology" },
+    { label: "Innovación e IA", href: "#innovation" },
     { label: "Contacto", href: "#contact" },
   ],
   frameworks: [
@@ -376,6 +432,18 @@ const es: ContentBundle = {
     videoUrl: "https://www.youtube.com/embed/l48OWQ8Vr1E",
     videoTitle: "Normas de Privacidad y Seguridad de HIPAA (en español)",
   },
+  innovationProjects: [
+    {
+      title: "Pipeline DevOps Asistido por IA",
+      description:
+        "Arquitectura y despliegue de una aplicación Next.js full-stack orquestando un agente de IA (Claude Code) a través de CLI. Gestión de prompt engineering, depuración automatizada y despliegue CI/CD, reduciendo el tiempo de desarrollo tradicional en un 80%.",
+    },
+    {
+      title: "Integración de LLM para GRC",
+      description:
+        "Utilización activa de Grandes Modelos de Lenguaje (Claude, Kimi, DeepSeek) para acelerar el análisis de brechas y el mapeo de flujos de trabajo de privacidad médica (HIPAA) a los controles del NIST Cybersecurity Framework.",
+    },
+  ],
   spaceImage: {
     credit: "NASA, ESA, CSA, STScI — Pilares de la Creación, Telescopio Espacial James Webb",
   },
@@ -383,6 +451,7 @@ const es: ContentBundle = {
     work: "Trabajo Seleccionado",
     frameworks: "Marcos y Especímenes",
     methodology: "Metodología y Enfoque",
+    innovation: "Innovación e IA",
     contact: "Conectemos.",
   },
   ui: {

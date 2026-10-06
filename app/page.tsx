@@ -7,6 +7,7 @@ import ProjectSpread from "@/components/ProjectSpread";
 import FilmStrip from "@/components/FilmStrip";
 import TypeSpecimens from "@/components/TypeSpecimens";
 import Methodology from "@/components/Methodology";
+import Innovation from "@/components/Innovation";
 import Contact from "@/components/Contact";
 import { content, type Language } from "@/data/content";
 
@@ -51,6 +52,10 @@ export default function Home() {
           title={t.sectionTitles.methodology}
           educationLabel={t.ui.educationLabel}
           certificationsLabel={t.ui.certificationsLabel}
+        />
+        <Innovation
+          projects={t.innovationProjects}
+          title={t.sectionTitles.innovation}
         />
         <Contact profile={t.profile} title={t.sectionTitles.contact} />
       </main>
